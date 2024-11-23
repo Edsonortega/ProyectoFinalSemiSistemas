@@ -69,7 +69,6 @@ flujo_preguntas(Series, Filtros) :-
     resultado(SeriesFiltradasFinal).
 
 % Preguntar opciones dinámicas
-% Update the preguntar/5 predicate definition
 preguntar(Tipo, Series, PropiedadIndex, _, SeriesFiltradas) :-
     opciones_dinamicas(Series, PropiedadIndex, Opciones),
     format('¿Tu serie pertenece a alguno de los siguientes ~w?\n', [Tipo]),
