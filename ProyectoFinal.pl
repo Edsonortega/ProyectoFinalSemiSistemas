@@ -1,10 +1,10 @@
-#Base de Conocimientos con sus atributos para poder preguntar
+% Base de Conocimientos
 serie('Stranger Things', ciencia_ficcion, 2016, netflix, [amistad, misterios, dimensiones_paralelas], [millie_bobby_brown, finn_wolfhard]).
 serie('Breaking Bad', drama, 2008, amc, [crimen, quimica, transformacion], [bryan_cranston, aaron_paul]).
 serie('The Crown', drama, 2016, netflix, [realeza, historia, politica], [claire_foy, olivia_colman]).
 serie('The Mandalorian', ciencia_ficcion, 2019, disney_plus, [star_wars, aventuras, mercenarios], [pedro_pascal]).
 serie('Friends', comedia, 1994, hbo, [amistad, humor, romance], [jennifer_aniston, courteney_cox]).
-serie('The Office', comedia, 2005, netflix, [humor, oficina, absurdos], [steve_Carell, rain_wilson]).
+serie('The Office', comedia, 2005, netflix, [humor, oficina, absurdos], [steve_carell, rain_wilson]).
 serie('Game of Thrones', fantasia, 2011, hbo, [dragones, reinos, politica], [emilia_clarke, kit_harington]).
 serie('The Witcher', fantasia, 2019, netflix, [monstruos, magia, aventuras], [henry_cavill]).
 serie('Sherlock', misterio, 2010, bbc, [detectives, ingenio, crimen], [benedict_cumberbatch, martin_freeman]).
@@ -47,65 +47,127 @@ serie('Bleach', anime, 2004, crunchyroll, [accion, fantasmas, shinigamis], [ichi
 
 % Predicado principal
 adivinar :-
-    listar_series(SeriesIniciales),
-    realizar_preguntas(SeriesIniciales, SeriesFinales),
-    mostrar_resultado(SeriesFinales).
+    findall([Nombre, Genero, Anio, Plataforma, Temas, Actores], serie(Nombre, Genero, Anio, Plataforma, Temas, Actores), Series),
+    flujo_preguntas(Series, []).
 
-% Listar todas las series de la base de datos
-listar_series(Series) :-
-    findall([Nombre, Genero, Anio, Plataforma, Temas, Actores],
-            serie(Nombre, Genero, Anio, Plataforma, Temas, Actores),
-            Series).
+% Flujo dinámico de preguntas
+flujo_preguntas(Series, _) :-
+    length(Series, 1),
+    [Serie] = Series,
+    resultado(Serie),
+    !.
+flujo_preguntas(Series, _) :-
+    length(Series, 0),
+    writeln('No se encontraron series que coincidan con tus respuestas.'),
+    !.
+flujo_preguntas(Series, Filtros) :-
+    preguntar('plataforma', Series, 4, Filtros, SeriesFiltradas1),
+    preguntar('rango de anios', SeriesFiltradas1, 3, Filtros, SeriesFiltradas2),
+    preguntar('genero', SeriesFiltradas2, 2, Filtros, SeriesFiltradas3),
+    preguntar('temas', SeriesFiltradas3, 5, Filtros, SeriesFiltradas4),
+    preguntar('actores', SeriesFiltradas4, 6, Filtros, SeriesFiltradasFinal),
+    resultado(SeriesFiltradasFinal).
 
-% Realizar preguntas sucesivas
-realizar_preguntas(Series, SeriesFinales) :-
-    pregunta_plataforma(Series, SeriesFiltradas1),
-    pregunta_anio(SeriesFiltradas1, SeriesFiltradas2),
-    pregunta_genero(SeriesFiltradas2, SeriesFinales).
+% Preguntar opciones dinámicas
+% Update the preguntar/5 predicate definition
+preguntar(Tipo, Series, PropiedadIndex, _, SeriesFiltradas) :-
+    opciones_dinamicas(Series, PropiedadIndex, Opciones),
+    format('¿Tu serie pertenece a alguno de los siguientes ~w?\n', [Tipo]),
+    mostrar_opciones(Opciones),
+    writeln('0. Otro'),
+    read(Respuesta),
+    (   Respuesta = 0 ->
+        SeriesFiltradas = Series
+    ;   number(Respuesta),
+        nth1(Respuesta, Opciones, RespuestaElegida),
+        (   PropiedadIndex = 3 ->
+            RespuestaElegida = Min-Max,
+            filtrar_por_rango(Series, PropiedadIndex, Min, Max, SeriesFiltradas)
+        ;   PropiedadIndex = 5 ->
+            filtrar_por_lista(Series, PropiedadIndex, RespuestaElegida, SeriesFiltradas)
+        ;   filtrar_por_propiedad(Series, PropiedadIndex, RespuestaElegida, SeriesFiltradas)
+        ),
+        (SeriesFiltradas = [] ->
+            writeln('No se encontraron series con ese criterio. Manteniendo todas las series.'),
+            SeriesFiltradas = Series
+        ;   true
+        )
+    ),
+    !.
+opciones_dinamicas(Series, PropiedadIndex, Opciones) :-
+    findall(Propiedad, (
+        member(Serie, Series),
+        nth1(PropiedadIndex, Serie, Propiedad)
+    ), Propiedades),
+    (   PropiedadIndex = 3 ->
+        maplist(number, Propiedades),
+        min_list(Propiedades, Min),
+        max_list(Propiedades, Max),
+        generar_rangos(Min, Max, 5, Opciones)
+    ;   PropiedadIndex = 5 ->
+        flatten(Propiedades, FlatPropiedades),
+        list_to_set(FlatPropiedades, Opciones)
+    ;   list_to_set(Propiedades, Opciones)
+    ).
 
-% Pregunta: plataforma
-pregunta_plataforma(Series, Filtradas) :-
-    writeln('¿Tu serie pertenece a alguna de las siguientes plataformas?'),
-    listar_opciones([netflix, amc, disney_plus, hbo, bbc, amazon_prime, crunchyroll, history_channel, hulu, fx, peacock, abc]),
-    read(PlataformaElegida),
-    incluir_series_por(Series, 4, PlataformaElegida, Filtradas).
+% Filtrar por propiedad
+filtrar_por_propiedad(Series, PropiedadIndex, Valor, SeriesFiltradas) :-
+    include(serie_tiene_valor(PropiedadIndex, Valor), Series, SeriesFiltradas).
 
-% Pregunta: año
-pregunta_anio(Series, Filtradas) :-
-    writeln('¿En qué año comenzó tu serie?'),
-    read(AnioElegido),
-    incluir_series_por(Series, 3, AnioElegido, Filtradas).
+serie_tiene_valor(PropiedadIndex, Valor, Serie) :-
+    nth1(PropiedadIndex, Serie, Valor).
 
-% Pregunta: género
-pregunta_genero(Series, Filtradas) :-
-    writeln('¿De qué género es tu serie?'),
-    listar_opciones([ciencia_ficcion, drama, comedia, terror, fantasia, accion, misterio]),
-    read(GeneroElegido),
-    incluir_series_por(Series, 2, GeneroElegido, Filtradas).
+% Filtrar por rango de años
+filtrar_por_rango(Series, PropiedadIndex, Min, Max, SeriesFiltradas) :-
+    include(serie_en_rango(PropiedadIndex, Min, Max), Series, SeriesFiltradas).
 
-% Filtrar series con base en un criterio (posición en el hecho)
-incluir_series_por(Series, Posicion, Valor, Filtradas) :-
-    include(cumple_criterio(Posicion, Valor), Series, Filtradas).
+serie_en_rango(PropiedadIndex, Min, Max, Serie) :-
+    nth1(PropiedadIndex, Serie, Valor),
+    Valor >= Min,
+    Valor =< Max.
 
-cumple_criterio(Posicion, Valor, Serie) :-
-    nth1(Posicion, Serie, Valor).
+% Filtrar por lista (para temas y actores)
+filtrar_por_lista(Series, PropiedadIndex, Valor, SeriesFiltradas) :-
+    include(serie_tiene_en_lista(PropiedadIndex, Valor), Series, SeriesFiltradas).
 
-% Mostrar resultado
-mostrar_resultado([]) :-
-    writeln('No se encontró ninguna serie que cumpla con las características.').
-mostrar_resultado([UnicaSerie]) :-
-    writeln('La serie que estás pensando es: '),
-    writeln(UnicaSerie).
-mostrar_resultado(Series) :-
-    writeln('No se pudo determinar una serie exacta. Aquí tienes las posibles opciones:'),
-    writeln(Series).
+serie_tiene_en_lista(PropiedadIndex, Valor, Serie) :-
+    nth1(PropiedadIndex, Serie, Lista),
+    member(Valor, Lista).
 
-% Listar opciones en formato legible
-listar_opciones(Opciones) :-
-    listar_opciones(Opciones, 1).
+% Generar rangos de años
+generar_rangos(Min, Max, Incremento, Rangos) :-
+    NumRangos is ceil((Max - Min) / Incremento),
+    findall(Rango, (
+        between(1, NumRangos, N),
+        Inicio is Min + (N - 1) * Incremento,
+        Fin is min(Inicio + Incremento - 1, Max),
+        Rango = Inicio-Fin
+    ), Rangos).
 
-listar_opciones([], _).
-listar_opciones([Opcion|Resto], N) :-
-    format("~w. ~w~n", [N, Opcion]),
-    N1 is N + 1,
-    listar_opciones(Resto, N1).
+% Mostrar opciones
+mostrar_opciones(Opciones) :-
+    mostrar_opciones(Opciones, 1).
+
+mostrar_opciones([], _).
+mostrar_opciones([Opcion|Resto], Index) :-
+    format('~w. ~w\n', [Index, Opcion]),
+    NextIndex is Index + 1,
+    mostrar_opciones(Resto, NextIndex).
+
+% Mostrar resultado final
+resultado([]) :-
+    writeln('No se encontraron series que coincidan con tus respuestas.'),
+    !.
+resultado([Serie]) :-
+    nth1(1, Serie, Nombre),
+    format('La serie que estas buscando es: ~w\n', [Nombre]),
+    !.
+resultado(Series) :-
+    writeln('Hay multiples opciones que coinciden:'),
+    mostrar_series(Series),
+    !.
+
+mostrar_series([]).
+mostrar_series([[Nombre|_]|Resto]) :-
+    writeln(Nombre),
+    mostrar_series(Resto).
