@@ -1,151 +1,139 @@
+#Base de Conocimientos con sus atributos para poder preguntar
+serie('Stranger Things', ciencia_ficcion, 2016, netflix, [amistad, misterios, dimensiones_paralelas], [millie_bobby_brown, finn_wolfhard]).
+serie('Breaking Bad', drama, 2008, amc, [crimen, quimica, transformacion], [bryan_cranston, aaron_paul]).
+serie('The Crown', drama, 2016, netflix, [realeza, historia, politica], [claire_foy, olivia_colman]).
+serie('The Mandalorian', ciencia_ficcion, 2019, disney_plus, [star_wars, aventuras, mercenarios], [pedro_pascal]).
+serie('Friends', comedia, 1994, hbo, [amistad, humor, romance], [jennifer_aniston, courteney_cox]).
+serie('The Office', comedia, 2005, netflix, [humor, oficina, absurdos], [steve_Carell, rain_wilson]).
+serie('Game of Thrones', fantasia, 2011, hbo, [dragones, reinos, politica], [emilia_clarke, kit_harington]).
+serie('The Witcher', fantasia, 2019, netflix, [monstruos, magia, aventuras], [henry_cavill]).
+serie('Sherlock', misterio, 2010, bbc, [detectives, ingenio, crimen], [benedict_cumberbatch, martin_freeman]).
+serie('House of the Dragon', fantasia, 2022, hbo, [dragones, politica, historia], [paddy_Considine, emma_DArcy]).
+serie('Black Mirror', ciencia_ficcion, 2011, netflix, [tecnologia, distopia, moralidad], [bryce_dallas_howard, jon_hamm]).
+serie('Peaky Blinders', drama, 2013, netflix, [crimen, mafia, historia], [cillian_murphy, tom_hardy]).
+serie('The Boys', accion, 2019, amazon_prime, [superheroes, corrupcion, satira], [karl_urban, antony_starr]).
+serie('Money Heist', accion, 2017, netflix, [robos, estrategia, tension], [alvaro_morte, ursula_corbero]).
+serie('Succession', drama, 2018, hbo, [negocios, familia, poder], [brian_cox, jeremy_strong]).
+serie('The Umbrella Academy', ciencia_ficcion, 2019, netflix, [superheroes, familia, viajes_en_el_tiempo], [elliot_page, tom_hopper]).
+serie('The Last of Us', drama, 2023, hbo, [apocalipsis, infectados, emociones], [pedro_pascal, bella_ramsey]).
+serie('Dark', misterio, 2017, netflix, [viajes_en_el_tiempo, secretos, bucles], [louis_hofmann, andreas_pietschmann]).
+serie('Arcane', animacion, 2021, netflix, [fantasia, tecnologia, rivalidades], [jinx, vi]).
+serie('Gambito de dama', comedia, 2016, amazon_prime, [humor_negro, relaciones, drama], [anya_taylor_joy]).
+serie('Attack on Titan', anime, 2013, crunchyroll, [accion, drama, titanes], [eren_jaeger, mikasa_ackerman]).
+serie('Death Note', anime, 2006, crunchyroll, [misterio, psicologico, crimen], [yagami_light, amane_misa]).
+serie('Naruto', anime, 2002, crunchyroll, [accion, ninjas, amistad], [naruto_uzumaki, sasuke_uchiha]).
+serie('Demon Slayer', anime, 2019, crunchyroll, [accion, fantasia, demonios], [tanjiro_kamado, zenitsu_agatsuma]).
+serie('Jujutsu Kaisen', anime, 2020, crunchyroll, [accion, exorcismo, fantasia], [itadori_yuji, satouru_gojo]).
+serie('Cowboy Bebop', anime, 1998, crunchyroll, [ciencia_ficcion, cazarrecompensas, espacio], [spike_spiegel, faye_valentine]).
+serie('My Hero Academia', anime, 2016, crunchyroll, [superheroes, escuela, accion], [izuku_midoriya, bakugo_katsuki]).
+serie('One Piece', anime, 1999, crunchyroll, [aventura, piratas, amistad], [monkey_d_luffy, ronoroa_zoro]).
+serie('Better Call Saul', drama, 2015, amc, [abogados, crimen, corrupcion], [bob_odenkirk, rhea_seehorn]).
+serie('The Sopranos', drama, 1999, hbo, [mafia, familia, psicologia], [james_gandolfini, edie_falco]).
+serie('Ozark', drama, 2017, netflix, [lavado_de_dinero, crimen, familia], [jason_bateman, laura_linney]).
+serie('Euphoria', drama, 2019, hbo, [adolescencia, problemas_sociales, romance], [zendaya, hunter_schafer]).
+serie('Vikings', drama, 2013, history_channel, [historia, batallas, cultura_nordica], [travis_fimmel, katheryn_winnick]).
+serie('How I Met Your Mother', comedia, 2005, hulu, [amistad, humor, romance], [josh_radnor, neil_patrick_harris]).
+serie('Mad Men', drama, 2007, amc, [publicidad, negocios, psicologia], [jon_hamm, elisabeth_moss]).
+serie('Brooklyn Nine-Nine', comedia, 2013, hulu, [policias, humor, crimen], [andy_samberg, terry_crews]).
+serie('Fargo', drama, 2014, fx, [crimen, misterio, antologia], [billy_bob_thornton, martin_freeman]).
+serie('Westworld', ciencia_ficcion, 2016, hbo, [robots, conciencia, filosofia], [evan_rachel_wood, jeffrey_wright]).
+serie('The Haunting of Hill House', terror, 2018, netflix, [fantasmas, familia, trauma], [victoria_pedretti, oliver_jackson-cohen]).
+serie('Parks and Recreation', comedia, 2009, peacock, [politica, humor, comunidad], [amy_poehler, nick_offerman]).
+serie('Lost', misterio, 2004, abc, [supervivencia, islas, secretos], [matthew_fox, evangeline_lilly]).
+serie('The Expanse', ciencia_ficcion, 2015, amazon_prime, [espacio, politica, conflictos], [steven_strait, dominique_tipper]).
+serie('Orange Is the New Black', drama, 2013, netflix, [carcel, diversidad, relaciones], [taylor_schilling, laura_prepon]).
+serie('The Handmaid\'s Tale', drama, 2017, hulu, [distopia, feminismo, politica], [elisabeth_moss, yvonne_strahovski]).
+serie('Bleach', anime, 2004, crunchyroll, [accion, fantasmas, shinigamis], [ichigo_kurosaki, rukia_kuchiki]).
 
-% Función principal para mostrar el menú inicial y tomar la decisión
-inicio :-
-    write('Bienvenido al adivinador de series!'), nl,
-    write('1. Iniciar Juego'), nl,
-    write('2. Finalizar Programa'), nl,
-    read(Opcion),
-    (   Opcion = 1 -> iniciar_buscador  % Inicia el juego
-    ;   Opcion = 2 -> finalizar_programa  % Finaliza el programa
-    ;   write('Opción no válida. Por favor, elige 1 o 2.'), nl, inicio  % Vuelve a mostrar el menú si la opción es inválida
+% Predicado principal
+adivinar :-
+    findall([Nombre, Genero, Anio, Plataforma, Temas, Actores], serie(Nombre, Genero, Anio, Plataforma, Temas, Actores), Series),
+    flujo_preguntas(Series).
+
+% Flujo dinámico de preguntas
+flujo_preguntas(Series) :-
+    preguntar('plataforma', Series, 4, PlataformaElegida, SeriesFiltradas1),
+    preguntar('rango de años', SeriesFiltradas1, 2, AnioElegido, SeriesFiltradas2),
+    preguntar('género', SeriesFiltradas2, 1, GeneroElegido, SeriesFiltradas3),
+    preguntar('temas', SeriesFiltradas3, 5, TemaElegido, SeriesFiltradas4),
+    preguntar('actores', SeriesFiltradas4, 6, ActorElegido, SeriesFiltradasFinal),
+    resultado(SeriesFiltradasFinal).
+
+% Preguntar opciones dinámicas
+preguntar(Tipo, Series, PropiedadIndex, RespuestaElegida, SeriesFiltradas) :-
+    opciones_dinamicas(Series, PropiedadIndex, Opciones),
+    format('¿Tu serie pertenece a alguno de los siguientes ~w?\n', [Tipo]),
+    mostrar_opciones(Opciones),
+    read(Respuesta),
+    (
+        number(Respuesta),
+        nth1(Respuesta, Opciones, RespuestaElegida) ->
+        (   PropiedadIndex = 2 ->
+            RespuestaElegida = Min-Max,
+            filtrar_por_rango(Series, PropiedadIndex, Min, Max, SeriesFiltradas)
+        ;
+            filtrar_por_propiedad(Series, PropiedadIndex, RespuestaElegida, SeriesFiltradas)
+        ),
+        writeln('Series después del filtrado:'),
+        writeln(SeriesFiltradas)
+    ;
+        writeln('Opción inválida, intenta nuevamente.'),
+        preguntar(Tipo, Series, PropiedadIndex, RespuestaElegida, SeriesFiltradas)
     ).
 
-% Función para iniciar el juego y comenzar el proceso de adivinación
-iniciar_buscador :-
-    write('Comenzando el juego...'), nl,
-    pregunta_genero(Serie),
-    pregunta_plataforma(Serie),
-    pregunta_tema(Serie),
-    pregunta_ano(Serie),
-    pregunta_actores(Serie),
-    (   serie(Serie, _) -> 
-        write('Te recomendamos la serie: '), write(Serie), nl
-    ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
+% Opciones dinámicas
+opciones_dinamicas(Series, PropiedadIndex, Opciones) :-
+    findall(Propiedad, (
+        member(Serie, Series),
+        nth1(PropiedadIndex, Serie, Propiedad)
+    ), Propiedades),
+    (   PropiedadIndex = 2 ->
+        maplist(number, Propiedades), % Convertir las propiedades a números
+        min_list(Propiedades, Min),
+        max_list(Propiedades, Max),
+        generar_rangos(Min, Max, 10, Opciones)
+    ;
+        list_to_set(Propiedades, Opciones)
     ).
+filtrar_por_propiedad(Series, PropiedadIndex, Valor, SeriesFiltradas) :-
+    include(serie_tiene_valor(PropiedadIndex, Valor), Series, SeriesFiltradas).
 
-% Función para finalizar el programa
-finalizar_programa :-
-    write('Gracias por usar el adivinador de series. ¡Hasta luego!'), nl.
+serie_tiene_valor(PropiedadIndex, Valor, Serie) :-
+    nth1(PropiedadIndex, Serie, Valor).
 
-% Pregunta sobre el género de la serie
-pregunta_genero(Serie) :-
-    write('¿Qué género tiene tu serie?'), nl,
-    write('1. Comedia'), nl,
-    write('2. Supervivencia'), nl,
-    write('3. Drama'), nl,
-    write('4. Ciencia ficción'), nl,
-    write('5. Fantasía'), nl,
-    write('6. Acción'), nl,
-    write('7. Misterio'), nl,
-    write('8. Otro'), nl,
-    read(Opcion),
-    (   member(Opcion, [1, 2, 3, 4, 5, 6, 7]) ->
-        (   serie(Serie, [Opcion, _, _, _, _])
-        ;   pregunta_genero(Serie)
-        )
-    ;   write('Por favor, especifica el género de la serie:'), nl,
-        read(Genero),
-        (   serie(Serie, [Genero, _, _, _, _])
-        ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
-        )
-    ).
+% Filtrar por rango de años
+filtrar_por_rango(Series, PropiedadIndex, Min, Max, SeriesFiltradas) :-
+    include(serie_en_rango(PropiedadIndex, Min, Max), Series, SeriesFiltradas).
 
-% Pregunta sobre la plataforma de la serie
-pregunta_plataforma(Serie) :-
-    write('¿En qué plataforma se transmite tu serie?'), nl,
-    write('1. Netflix'), nl,
-    write('2. HBO'), nl,
-    write('3. Amazon Prime'), nl,
-    write('4. Disney Plus'), nl,
-    write('5. AMC'), nl,
-    write('6. BBC'), nl,
-    write('7. Otro'), nl,
-    read(Opcion),
-    (   member(Opcion, [1, 2, 3, 4, 5, 6]) ->
-        (   serie(Serie, [_, _, Opcion, _, _])
-        ;   pregunta_plataforma(Serie)
-        )
-    ;   write('Por favor, especifica la plataforma en la que se transmite la serie:'), nl,
-        read(Plataforma),
-        (   serie(Serie, [_, _, Plataforma, _, _])
-        ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
-        )
-    ).
+serie_en_rango(PropiedadIndex, Min, Max, Serie) :-
+    nth1(PropiedadIndex, Serie, Valor),
+    Valor >= Min,
+    Valor =< Max.
 
-% Pregunta sobre la temática de la serie
-pregunta_tema(Serie) :-
-    write('¿Tu serie trata sobre...'), nl,
-    write('1. Crimen y mafia'), nl,
-    write('2. Superhéroes'), nl,
-    write('3. Viajes en el tiempo'), nl,
-    write('4. Magia y fantasía'), nl,
-    write('5. Apocalipsis/zombis'), nl,
-    write('6. Aventura/Exploración'), nl,
-    write('7. Romance'), nl,
-    write('8. Otro'), nl,
-    read(Opcion),
-    (   member(Opcion, [1, 2, 3, 4, 5, 6, 7]) ->
-        (   serie(Serie, [_, _, _, Opcion, _])
-        ;   pregunta_tema(Serie)
-        )
-    ;   write('Por favor, especifica el tema de la serie:'), nl,
-        read(Tema),
-        (   serie(Serie, [_, _, _, Tema, _])
-        ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
-        )
-    ).
+% Generar rangos de años
+generar_rangos(Min, Max, Incremento, Rangos) :-
+    findall(Rango, (
+        between(Min, Max, Inicio),
+        Fin is min(Inicio + Incremento - 1, Max),
+        Rango = Inicio-Fin
+    ), Rangos).
 
-% Pregunta sobre el año de la serie
-pregunta_ano(Serie) :-
-    write('¿De qué año es tu serie?'), nl,
-    write('1. Antes de 2000'), nl,
-    write('2. 2000-2010'), nl,
-    write('3. 2010-2020'), nl,
-    write('4. 2020-presente'), nl,
-    read(Opcion),
-    (   member(Opcion, [1, 2, 3, 4]) ->
-        (   serie(Serie, [_, _, _, _, Opcion])
-        ;   pregunta_ano(Serie)
-        )
-    ;   write('Por favor, especifica el año en que se estrenó la serie:'), nl,
-        read(Ano),
-        (   serie(Serie, [_, Ano, _, _, _])
-        ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
-        )
-    ).
+% Mostrar opciones
+mostrar_opciones(Opciones) :-
+    mostrar_opciones(Opciones, 1).
 
-% Pregunta sobre los actores principales de la serie
-pregunta_actores(Serie) :-
-    write('¿Tu serie cuenta con alguno de los siguientes actores?'), nl,
-    write('1. Millie Bobby Brown (Stranger Things)'), nl,
-    write('2. Bryan Cranston (Breaking Bad)'), nl,
-    write('3. Steve Carell (The Office)'), nl,
-    write('4. Pedro Pascal (The Mandalorian, The Last of Us)'), nl,
-    write('5. Otro'), nl,
-    read(Opcion),
-    (   member(Opcion, [1, 2, 3, 4]) ->
-        (   serie(Serie, [_, _, _, _, Actores]), member(Opcion, Actores)
-        ;   pregunta_actores(Serie)
-        )
-    ;   write('Por favor, especifica el actor de la serie que buscas:'), nl,
-        read(Actor),
-        (   serie(Serie, [_, _, _, _, Actores]), member(Actor, Actores)
-        ;   write('Lo siento, no pudimos adivinar la serie que buscas'), nl
-        )
-    ).
+mostrar_opciones([], _).
+mostrar_opciones([Opcion|Resto], Index) :-
+    format('~w. ~w\n', [Index, Opcion]),
+    NextIndex is Index + 1,
+    mostrar_opciones(Resto, NextIndex).
 
-    % Obtener todos los géneros de las series disponibles
-obtener_generos(Generos) :-
-    findall(G, (serie(_, [G|_], _, _, _)), GenerosList),
-    list_to_set(GenerosList, Generos). % Eliminar duplicados
-
-% Obtener todas las plataformas disponibles
-obtener_plataformas(Plataformas) :-
-    findall(P, (serie(_, [_, _, P, _, _])), PlataformasList),
-    list_to_set(PlataformasList, Plataformas). % Eliminar duplicados
-
-% Obtener todos los actores disponibles
-obtener_actores(Actores) :-
-    findall(A, (serie(_, _, _, _, ActoresList), member(A, ActoresList)), ActoresList),
-    list_to_set(ActoresList, Actores). % Eliminar duplicados
-
+% Mostrar resultado final
+resultado([]) :-
+    writeln('No se encontraron series que coincidan con tus respuestas.').
+resultado([Serie]) :-
+    nth1(1, Serie, Nombre),
+    format('La serie que estás buscando es: ~w\n', [Nombre]).
+resultado(Series) :-
+    writeln('Hay múltiples opciones que coinciden:'),
+    mostrar_opciones(Series).
