@@ -7,7 +7,7 @@ serie('Friends', comedia, 1994, hbo, [amistad, humor, romance], [jennifer_anisto
 serie('The Office', comedia, 2005, netflix, [humor, oficina, absurdos], [steve_carell, rain_wilson]).
 serie('Game of Thrones', fantasia, 2011, hbo, [dragones, reinos, politica], [emilia_clarke, kit_harington]).
 serie('The Witcher', fantasia, 2019, netflix, [monstruos, magia, aventuras], [henry_cavill]).
-serie('Sherlock', misterio, 2010, bbc, [detectives, ingenio, crimen], [benedict_cumberbatch, martin_freeman]).
+serie('Sherlock', misterio, 2010, hbo, [detectives, ingenio, crimen], [benedict_cumberbatch, martin_freeman]).
 serie('House of the Dragon', fantasia, 2022, hbo, [dragones, politica, historia], [paddy_Considine, emma_DArcy]).
 serie('Black Mirror', ciencia_ficcion, 2011, netflix, [tecnologia, distopia, moralidad], [bryce_dallas_howard, jon_hamm]).
 serie('Peaky Blinders', drama, 2013, netflix, [crimen, mafia, historia], [cillian_murphy, tom_hardy]).
@@ -18,7 +18,7 @@ serie('The Umbrella Academy', ciencia_ficcion, 2019, netflix, [superheroes, fami
 serie('The Last of Us', drama, 2023, hbo, [apocalipsis, infectados, emociones], [pedro_pascal, bella_ramsey]).
 serie('Dark', misterio, 2017, netflix, [viajes_en_el_tiempo, secretos, bucles], [louis_hofmann, andreas_pietschmann]).
 serie('Arcane', animacion, 2021, netflix, [fantasia, tecnologia, rivalidades], [jinx, vi]).
-serie('Gambito de dama', comedia, 2016, amazon_prime, [humor_negro, relaciones, drama], [anya_taylor_joy]).
+serie('Gambito de dama', drama, 2020, netflix, [adicciones, relaciones, autodisciplina], [anya_taylor_joy]).
 serie('Attack on Titan', anime, 2013, crunchyroll, [accion, drama, titanes], [eren_jaeger, mikasa_ackerman]).
 serie('Death Note', anime, 2006, crunchyroll, [misterio, psicologico, crimen], [yagami_light, amane_misa]).
 serie('Naruto', anime, 2002, crunchyroll, [accion, ninjas, amistad], [naruto_uzumaki, sasuke_uchiha]).
@@ -31,15 +31,15 @@ serie('Better Call Saul', drama, 2015, amc, [abogados, crimen, corrupcion], [bob
 serie('The Sopranos', drama, 1999, hbo, [mafia, familia, psicologia], [james_gandolfini, edie_falco]).
 serie('Ozark', drama, 2017, netflix, [lavado_de_dinero, crimen, familia], [jason_bateman, laura_linney]).
 serie('Euphoria', drama, 2019, hbo, [adolescencia, problemas_sociales, romance], [zendaya, hunter_schafer]).
-serie('Vikings', drama, 2013, history_channel, [historia, batallas, cultura_nordica], [travis_fimmel, katheryn_winnick]).
+serie('Vikings', drama, 2013, netflix, [historia, batallas, cultura_nordica], [travis_fimmel, katheryn_winnick]).
 serie('How I Met Your Mother', comedia, 2005, hulu, [amistad, humor, romance], [josh_radnor, neil_patrick_harris]).
 serie('Mad Men', drama, 2007, amc, [publicidad, negocios, psicologia], [jon_hamm, elisabeth_moss]).
 serie('Brooklyn Nine-Nine', comedia, 2013, hulu, [policias, humor, crimen], [andy_samberg, terry_crews]).
-serie('Fargo', drama, 2014, fx, [crimen, misterio, antologia], [billy_bob_thornton, martin_freeman]).
+serie('The Bear', drama, 2022, disney_plus, [cocina, balance_trabajo_vida, liderazgo], [jeremy_allen_white, ayo_edebiri]).
 serie('Westworld', ciencia_ficcion, 2016, hbo, [robots, conciencia, filosofia], [evan_rachel_wood, jeffrey_wright]).
 serie('The Haunting of Hill House', terror, 2018, netflix, [fantasmas, familia, trauma], [victoria_pedretti, oliver_jackson-cohen]).
-serie('Parks and Recreation', comedia, 2009, peacock, [politica, humor, comunidad], [amy_poehler, nick_offerman]).
-serie('Lost', misterio, 2004, abc, [supervivencia, islas, secretos], [matthew_fox, evangeline_lilly]).
+serie('Sword Art Online', anime, 2012, crunchyroll, [fantasia, videojuegos, espadas], [kirito, asuna]).
+serie('WandaVision', comedia, 2021, disney_plus, [magia, realidades_alternas, oscuridad], [elizabeth_olsen, paul_bettany]).
 serie('The Expanse', ciencia_ficcion, 2015, amazon_prime, [espacio, politica, conflictos], [steven_strait, dominique_tipper]).
 serie('Orange Is the New Black', drama, 2013, netflix, [carcel, diversidad, relaciones], [taylor_schilling, laura_prepon]).
 serie('The Handmaid\'s Tale', drama, 2017, hulu, [distopia, feminismo, politica], [elisabeth_moss, yvonne_strahovski]).
